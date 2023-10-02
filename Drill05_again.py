@@ -1,4 +1,5 @@
 from pico2d import *
+import random # 랜덤 기능
 
 # 코딩 요령
 # 먼저 전체적인 뼈대 제작 후 세부적인 내용
@@ -13,6 +14,9 @@ TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 
 def load_resources():
     global TUK_ground, character
+    global arrow
+
+    arrow = load_image('hand_arrow.png')
     TUK_ground = load_image('TUK_GROUND.png')
     character = load_image('animation_sheet.png')
 
@@ -30,14 +34,19 @@ def handle_events():
 
 def reset_world():
     global running, x, y, frame
+    global hx, hy
+
     running = True
     x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
     frame = 0
 
+    # hx, hy = TUK_WIDTH - 50, TUK_HEIGHT - 50
+    hx, hy = random.randint(0, TUK_WIDTH), random.randint(0, TUK_HEIGHT)
 
 def render_world():
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+    arrow.draw(hx, hy)
     character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     update_canvas()
 
