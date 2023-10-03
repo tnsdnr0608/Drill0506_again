@@ -69,7 +69,7 @@ def set_new_target_arrow():
         frame = 0
         target_exists = True
     else:
-        action = 3 if action == 1 else 2 # 이전의 소년이 우측으로 이동중이었으면, IDLE 동작시 우측을 바라보도록
+        action = 3 if action == 1 else 2 # 이전의 소년이 우측 으로 이동중 이었으면, IDLE 동작시 우측을 바라보도록
         frame = 0
         target_exists = False
 
@@ -100,7 +100,8 @@ def update_world():
             cx, cy = hx, hy # 캐릭터 위치를 기존 목적지 위치와 정확히 일치 시킴.
             del points[0] # 목표 지점에 왔기 때문에, 더 이상 필요 없는 점을 삭제
             set_new_target_arrow()
-
+    elif points: # 목표 지점이 없는 상황 에서, 새로운 목표 지점이 생기면...
+        set_new_target_arrow()
 
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 hide_cursor()
